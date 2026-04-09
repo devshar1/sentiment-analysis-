@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Performance | Sentiment Analysis{% endblock %}
+
+{% block content %}
+<h2>📊 Model Performance Overview</h2>
+
+<p><strong>Overall Accuracy:</strong> {{ accuracy }}</p>
+
+<h4>Positive Sentiment Metrics</h4>
+<ul>
+  <li>Precision: {{ report['positive']['precision'] | round(4) }}</li>
+  <li>Recall: {{ report['positive']['recall'] | round(4) }}</li>
+  <li>F1-Score: {{ report['positive']['f1-score'] | round(4) }}</li>
+</ul>
+
+<h4>Negative Sentiment Metrics</h4>
+<ul>
+  <li>Precision: {{ report['negative']['precision'] | round(4) }}</li>
+  <li>Recall: {{ report['negative']['recall'] | round(4) }}</li>
+  <li>F1-Score: {{ report['negative']['f1-score'] | round(4) }}</li>
+</ul>
+
+<h4>Confusion Matrix</h4>
+<img src="data:image/png;base64,{{ plot_url }}" class="img-fluid" alt="Confusion Matrix" style="border: 1px solid #ccc; border-radius: 4px; max-width: 100%;">
+
+<br><br>
+<a href="{{ url_for('index') }}" class="btn btn-primary">← Back to Home</a>
+{% endblock %}

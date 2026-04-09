@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+{% block title %}Home | Sentiment Analyzer{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+
+  <!-- 🔍 Title -->
+  <h2 class="fade-in-text mb-4">🔍 Sentiment Analysis with LIME</h2>
+
+  <!-- 🔘 Single Review Form -->
+  <div class="card p-4 mb-4 shadow fade-in-text">
+    <h4 class="mb-3">Analyze a Single Review</h4>
+    <form method="POST" action="/">
+      <div class="mb-3">
+        <label for="review" class="form-label">Enter or paste your review:</label>
+        <textarea class="form-control" id="review" name="review" rows="4" placeholder="Type something positive or negative...">{{ review_text }}</textarea>
+      </div>
+      <button type="submit" name="submit_single" class="btn btn-primary" id="analyzeBtn"  value="1">Analyze Sentiment</button>
+      <div id="loadingSpinner" class="spinner-border text-success ms-3 d-none" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </form>
+  </div>
+
+  <!-- ✅ Prediction Result Card -->
+  {% if prediction %}
+  <div class="card p-4 mb-4 fade-in-text shadow">
+    <div class="{{ 'result-positive' if prediction == 'positive' else 'result-negative' }} rounded p-3">
+      {% if prediction == 'positive' %}
+        <h5 class="text-success">😊 Positive Sentiment Detected</h5>
+      {% elif prediction == 'negative' %}
+        <h5 class="text-danger">😞 Negative Sentiment Detected</h5>
+      {% else %}
+        <h5 class="text-warning">⚠️ Unable to determine sentiment.</h5>
+      {% endif %}
+      <p>{{ probability }}</p>
+    </div>
+
+    <!-- 🔍 LIME HTML -->
+    <div class="lime-container">
+      {{ explanation_html|safe }}
+    </div>
+
+    <!-- ⬇️ Download Explanation -->
+    <a href="{{ url_for('download_explanation') }}" class="btn btn-outline-secondary mt-3">
+      <i class="bi bi-download"></i> Download Explanation
+    </a>
+  </div>
+  {% endif %}
+
+  <!-- 📁 Batch Upload Form -->
+  <div class="card p-4 mb-4 shadow fade-in-text">
+    <h4 class="mb-3">Batch Prediction from CSV</h4>
+    <form method="POST" enctype="multipart/form-data">
+      <div class="mb-3">
+        <input type="file" class="form-control" name="reviews_file" accept=".csv" required>
+      </div>
+      <button type="submit" name="submit_batch" class="btn btn-secondary">Upload and Predict</button>
+    </form>
+  </div>
+
+  <!-- 📋 Batch Result Table -->
+  {% if batch_results %}
+  <div class="card p-4 mb-4 shadow fade-in-text">
+    <h5>Batch Predictions (First 20 shown)</h5>
+    {{ batch_results|safe }}
+  </div>
+  {% endif %}
+
+  <!-- 🕘 Recent Predictions -->
+  {% if history %}
+  <div class="card p-4 mb-4 shadow fade-in-text">
+    <div class="d-flex align-items-center mb-3">
+      <h5 class="mb-0">🕘 Recent Predictions (Last 5)</h5>
+      <a href="{{ url_for('export_pdf') }}" class="btn btn-outline-primary btn-sm ms-auto">
+        <i class="bi bi-file-earmark-pdf"></i> Export PDF
+      </a>
+    </div>
+    <div class="table-responsive">
+      <table class="table table-bordered table-striped table-hover align-middle">
+        <thead class="table-dark">
+          <tr>
+            <th>Input Preview</th>
+            <th>Sentiment</th>
+            <th>Positive %</th>
+            <th>Negative %</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in history %}
+          <tr>
+            <td>{{ item.text }}</td>
+            <td>{{ item.sentiment }}</td>
+            <td>{{ item.prob_pos }}</td>
+            <td>{{ item.prob_neg }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  {% endif %}
+
+</div>
+{% endblock %}

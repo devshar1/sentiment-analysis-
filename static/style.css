@@ -1,0 +1,198 @@
+/* 🌞 LIGHT MODE BASE */
+body {
+    background: linear-gradient(to right, #f5f6fa, #e3eefe);
+    font-family: 'Segoe UI', Arial, sans-serif;
+    color: #000;
+}
+
+.container {
+    background-color: #ffffff;
+    color: #000;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+
+/* ✅ RESULT BOXES */
+.result-positive {
+    background-color: #e1faea;
+    border-left: 6px solid #28a745;
+    padding: 15px;
+    color: #155724;
+}
+
+.result-negative {
+    background-color: #fff0f0;
+    border-left: 6px solid #dc3545;
+    padding: 15px;
+    color: #721c24;
+}
+
+/* 🎯 BUTTONS */
+.btn-primary, .btn-secondary {
+    border-radius: 30px;
+}
+
+/* ✨ ANIMATION */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px);}
+  to   { opacity: 1; transform: translateY(0);}
+}
+
+.fade-in-text {
+  animation: fadeIn 0.8s ease;
+}
+
+/* 🌙 DARK MODE BASE */
+body.dark-mode {
+  background: #181a1b;
+  color: #fafafa;
+}
+
+/* 🔥 MAIN FIX (container + cards) */
+body.dark-mode .container,
+body.dark-mode .card {
+  background-color: #1e1e1e !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+}
+
+/* 🔥 FIX ALL TEXT INSIDE */
+body.dark-mode .container * {
+  color: #e6e6e6 !important;
+}
+
+/* 🎯 HEADINGS (NO MORE FADE) */
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode h4,
+body.dark-mode h5,
+body.dark-mode h6 {
+  color: #ffffff !important;
+}
+
+/* 🧾 FORM INPUTS */
+body.dark-mode input.form-control,
+body.dark-mode textarea.form-control {
+  background-color: #222 !important;
+  color: #f1f1f1 !important;
+  border: 1px solid #3b3b3b !important;
+}
+
+/* 📊 TABLES */
+body.dark-mode table,
+body.dark-mode th,
+body.dark-mode td {
+  background-color: #1e1e1e !important;
+  color: #eeeeee !important;
+  border-color: #333 !important;
+}
+
+body.dark-mode .table-striped tbody tr:nth-of-type(odd) {
+  background-color: #242424 !important;
+}
+
+/* 🧠 RESULT COLORS (STRONG VISIBILITY) */
+body.dark-mode .result-positive {
+  background-color: #1b5e20 !important;
+  border-left-color: #4caf50 !important;
+  color: #ffffff !important;
+}
+
+body.dark-mode .result-negative {
+  background-color: #7f1d1d !important;
+  border-left-color: #e53935 !important;
+  color: #ffffff !important;
+}
+
+/* 🔗 LINKS + NAV */
+body.dark-mode a,
+body.dark-mode .nav-link {
+  color: #61dafb !important;
+}
+
+body.dark-mode .nav-link.active {
+  color: #ffffff !important;
+  font-weight: bold;
+}
+
+/* 🔘 BUTTONS */
+body.dark-mode .btn-primary,
+body.dark-mode .btn-secondary {
+  background-color: #3a7bd5 !important;
+  color: #fff !important;
+  border-color: #3a7bd5 !important;
+}
+
+/* 🧱 NAVBAR + FOOTER */
+body.dark-mode .navbar,
+body.dark-mode .footer {
+  background: #23272b !important;
+  color: #bcbcbc !important;
+}
+
+/* 🏷 LABELS */
+body.dark-mode label,
+body.dark-mode .form-label {
+  color: #bbbbbb !important;
+}
+
+/* 🌗 TRANSITIONS */
+body,
+.container,
+.navbar,
+.footer,
+.result-positive,
+.result-negative,
+.btn-primary,
+.btn-secondary,
+input.form-control,
+textarea.form-control,
+table,
+th,
+td {
+  transition:
+    background-color 0.4s cubic-bezier(0.6, 0.2, 0.4, 1),
+    color 0.4s cubic-bezier(0.6, 0.2, 0.4, 1),
+    border-color 0.4s cubic-bezier(0.6, 0.2, 0.4, 1);
+}
+
+body.switching {
+  filter: brightness(0.92) blur(0.3px);
+}
+
+/* 🔘 DARK MODE TOGGLE LABEL */
+#darkModeLabel {
+  font-weight: 600;
+  font-size: 0.95rem;
+  user-select: none;
+  cursor: pointer;
+}
+
+/* 🔥 FIX LIME VISIBILITY */
+.lime-container {
+    overflow-x: auto;
+    border-radius: 10px;
+}
+
+/* Light mode */
+.lime-container iframe,
+.lime-container div {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+}
+
+/* Dark mode FIX */
+body.dark-mode .lime-container iframe,
+body.dark-mode .lime-container div {
+    background-color: #1e1e1e !important;
+    color: #ffffff !important;
+}
+
+/* Fix text inside LIME */
+body.dark-mode .lime-container * {
+    color: #ffffff !important;
+}

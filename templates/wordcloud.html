@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Word Clouds | Sentiment Analysis{% endblock %}
+
+{% block content %}
+<div class="container" style="margin: 20px;">
+  <h2>☁️ Word Cloud Visualization</h2>
+  <div class="row">
+    <div class="col-md-6 text-center">
+      <h4>Positive Reviews</h4>
+      <img src="data:image/png;base64,{{ pos_img }}" alt="Positive Word Cloud" class="img-fluid" />
+    </div>
+    <div class="col-md-6 text-center">
+      <h4>Negative Reviews</h4>
+      <img src="data:image/png;base64,{{ neg_img }}" alt="Negative Word Cloud" class="img-fluid" />
+    </div>
+  </div>
+  <br>
+  <a href="{{ url_for('index') }}" class="btn btn-primary mt-3">← Back to Home</a>
+</div>
+{% endblock %}

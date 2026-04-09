@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}Contact | Sentiment Analysis{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+  <h2>Contact Us</h2>
+
+{% if success_message %}
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+    ✅ {{ success_message }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+{% endif %}
+
+{% if error_message %}
+  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+    ❌ {{ error_message }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+{% endif %}
+
+
+  {% if success_message %}
+    <div class="alert alert-success">{{ success_message }}</div>
+  {% elif error_message %}
+    <div class="alert alert-danger">{{ error_message }}</div>
+  {% endif %}
+
+  <form method="POST" action="{{ url_for('contact') }}">
+    <div class="mb-3">
+      <label for="name" class="form-label">Name:</label>
+      <input type="text" class="form-control" id="name" name="name" required value="{{ request.form.get('name', '') }}">
+    </div>
+    <div class="mb-3">
+      <label for="email" class="form-label">Email:</label>
+      <input type="email" class="form-control" id="email" name="email" required value="{{ request.form.get('email', '') }}">
+    </div>
+    <div class="mb-3">
+      <label for="message" class="form-label">Message:</label>
+      <textarea class="form-control" id="message" name="message" rows="5" required>{{ request.form.get('message', '') }}</textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Send Message</button>
+  </form>
+</div>
+{% endblock %}

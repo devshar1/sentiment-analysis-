@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}About | Sentiment Analysis{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+  <h2>About This Project</h2>
+  <p>
+    This web app demonstrates sentiment analysis on movie reviews using a machine learning pipeline built with TF-IDF, Logistic Regression, and LIME explainability.
+  </p>
+  <ul>
+    <li><strong>Preprocessing:</strong> Cleans and vectorizes text for model input.</li>
+    <li><strong>Model:</strong> Logistic Regression on TF-IDF features, trained to identify positive and negative sentiments.</li>
+    <li><strong>Interpretability:</strong> LIME (Local Interpretable Model-Agnostic Explanations) highlights which words influenced each prediction.</li>
+    <li><strong>Interface:</strong> Flask and Bootstrap provide an easy-to-use web dashboard with prediction, batch upload, word clouds, and performance visualizations.</li>
+  </ul>
+  <p>
+    Created as a final year MCA project to showcase modern AI interpretability on real-world data, with transparent, user-friendly results.
+  </p>
+</div>
+{% endblock %}
